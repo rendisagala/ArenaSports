@@ -4,6 +4,7 @@ import HeroOverlay from "../components/HeroOverlay";
 import CurrentMatch from "../components/CurrentMatch";
 import LatestNews from "../components/LatestNews";
 import NextMatch from "../components/NextMatch";
+import Videos from "../components/Videos";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <CurrentMatch />
       <LatestNews />
       <NextMatch />
+      <Videos />
     </div>
   );
 };
