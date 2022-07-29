@@ -6,6 +6,7 @@ import LatestNews from "../components/LatestNews";
 import NextMatch from "../components/NextMatch";
 import Videos from "../components/Videos";
 import Article from "../components/Article";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <NextMatch />
       <Videos />
       <Article />
+      <Footer />
     </div>
   );
 };
