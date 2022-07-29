@@ -5,6 +5,7 @@ import CurrentMatch from "../components/CurrentMatch";
 import LatestNews from "../components/LatestNews";
 import NextMatch from "../components/NextMatch";
 import Videos from "../components/Videos";
+import Article from "../components/Article";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <LatestNews />
       <NextMatch />
       <Videos />
+      <Article />
     </div>
   );
 };
