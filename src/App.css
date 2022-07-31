@@ -2,6 +2,7 @@ body {
   margin: 20px;
   padding: 20px;
   box-sizing: border-box;
+  background-color: rgba(240, 248, 255, 0.829);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Uchen&display=swap");
@@ -10,12 +11,20 @@ body {
   font-family: "Uchen", serif;
 }
 
-/* NavigationBar */
+/* -----NavigationBar----- */
 .navbar nav a {
   font-style: 18px;
 }
 
-/* Explore */
+/* -----Explore----- */
 .form-select {
   width: 30% !important;
+}
+/* table */
+tr .club-name {
+  text-align: left !important;
+}
+tr .club-img {
+  width: 5% !important;
+  height: 5% !important;
 }

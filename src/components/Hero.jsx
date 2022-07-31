@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundImage from "../assets/image/book-bg.jpg";
+import backgroundImage from "../assets/image/hero-bg.jpg";
 
 export default function Hero() {
   return (
