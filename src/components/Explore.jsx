@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 import nullImage from "../assets/image/null-image.png";
 
 const API = process.env.REACT_APP_STANDINGS_API;
@@ -45,22 +46,6 @@ export default function Explore() {
     };
     fetch();
   }, [selectedLeague, selectedSeason, selectedSort]);
-
-  const Loading = () => {
-    return (
-      <div className="row justify-content-center d-flex p-5">
-        <div className="spinner-grow  " role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-        <div className="spinner-grow  " role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-        <div className="spinner-grow  " role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
-    );
-  };
 
   const ShowTable = () => {
     return (
@@ -132,7 +117,7 @@ export default function Explore() {
   };
 
   return (
-    <div>
+    <>
       <div className="container my-5 py-5">
         <div className="row">
           <div className="col-12">
@@ -186,6 +171,6 @@ export default function Explore() {
           {loading ? <Loading /> : <ShowTable />}
         </div>
       </div>
-    </div>
+    </>
   );
 }

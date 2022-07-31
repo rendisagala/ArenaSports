@@ -2,7 +2,7 @@ import React from "react";
 
 export default function NavigationBar() {
   return (
-    <div>
+    <>
       <nav className="navbar navbar-expand-lg bg-white py-3 ">
         <div className="container">
           <a className="navbar-brand fw-bold fs-4" href="#">
@@ -26,12 +26,17 @@ export default function NavigationBar() {
               </li>
               <li className="nav-item ">
                 <a className="nav-link active" aria-current="page" href="#">
-                  About
+                  News
                 </a>
               </li>
               <li className="nav-item ">
                 <a className="nav-link active" aria-current="page" href="#">
-                  Reviews
+                  League
+                </a>
+              </li>
+              <li className="nav-item ">
+                <a className="nav-link active" aria-current="page" href="#">
+                  About
                 </a>
               </li>
             </ul>
@@ -39,6 +44,6 @@ export default function NavigationBar() {
           <p>Spot Your Best Teams!</p>
         </div>
       </nav>
-    </div>
+    </>
   );
 }

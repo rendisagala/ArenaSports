@@ -3,7 +3,7 @@ import backgroundImage from "../assets/image/hero-bg.jpg";
 
 export default function Hero() {
   return (
-    <div>
+    <>
       <div className="card text-light ">
         <img
           src={backgroundImage}
@@ -19,6 +19,6 @@ export default function Hero() {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
