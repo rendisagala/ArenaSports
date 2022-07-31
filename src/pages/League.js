@@ -1,12 +1,12 @@
 import React from "react";
 import NavigationBar from "../components/NavigationBar";
-import Explore from "../components/Explore";
+import Table from "../components/Table";
 
 function Home() {
   return (
     <>
       <NavigationBar />
-      <Explore />
+      <Table />
     </>
   );
 }
