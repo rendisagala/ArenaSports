@@ -47,6 +47,7 @@ export default function LatestNews() {
                         src={data.images[0].url}
                         className="img-fluid"
                         style={{ width: "100%" }}
+                        alt={data.images[0].name}
                       />
                       <a href="#!">
                         <div
