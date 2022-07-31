@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import "./App.css";
 import reportWebVitals from "./reportWebVitals";
-import "../src/assets/css/bootstrap/bootstrap.css";
-import "../src/assets/css/style.css";
-import "../src/assets/fonts/flaticon/font/flaticon.css";
-import "../src/assets/js/main.js";
-import "../src/assets/scss/style.scss";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/font-awesome/css/font-awesome.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
