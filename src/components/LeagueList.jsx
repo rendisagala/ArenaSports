@@ -11,8 +11,7 @@ export default function LeagueList() {
   useEffect(() => {
     const fetch = async () => {
       setLoading(true);
-      const response = await axios.get(`${API}`);
-      response.data.data ? setLeague(response.data.data) : console.log(`try`);
+      await axios.get(`${API}`).then((result) => setLeague(result.data.data));
       return setLoading(false);
     };
     fetch();
