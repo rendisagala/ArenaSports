@@ -16,8 +16,11 @@ export default function HomeHero() {
         <div className="card-img-overlay d-flex flex-column justify-content-center">
           <h5 className="card-title  display-3 fw-bolder mb-0">ARENASPORTS</h5>
           <p className="card-text lead">
-            “You were born to be a player. You were meant to be here. This
-            moment is yours.” —Herb Brooks{" "}
+            <span className="  bg-danger card-text lead">
+              {" "}
+              “You were born to be a player. You were meant to be here. This
+              moment is yours.” —Herb Brooks{" "}
+            </span>
           </p>
         </div>
       </div>
