@@ -16,8 +16,10 @@ export default function Table() {
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       await axios.get(`${API}`).then((result) => {
         setLeague(result.data.data);
+        setLoading(false);
       });
     };
     fetch();
@@ -25,8 +27,10 @@ export default function Table() {
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       await axios.get(`${API}/${selectedLeague}/seasons`).then((result) => {
         setSeason(result.data.data.seasons);
+        setLoading(false);
       });
     };
     fetch();
@@ -66,50 +70,54 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {table.map((data, index) => {
-              return (
-                <tr key={index} className="text-center">
-                  <th scope="row">
-                    {data.stats.filter((e) => e.type === "rank")[0].value}
-                  </th>
-                  <td className=" club-name">
-                    <img
-                      src={
-                        data.team.logos ? data.team.logos[0].href : nullImage
+            {loading ? (
+              <Loading />
+            ) : (
+              table.map((data, index) => {
+                return (
+                  <tr key={index} className="text-center">
+                    <th scope="row">
+                      {data.stats.filter((e) => e.type === "rank")[0].value}
+                    </th>
+                    <td className=" club-name">
+                      <img
+                        src={
+                          data.team.logos ? data.team.logos[0].href : nullImage
+                        }
+                        alt={data.team.abbreviation}
+                        className="club-img mx-5"
+                      />
+                      {data.team.name}
+                    </td>
+                    <td>
+                      {
+                        data.stats.filter((e) => e.type === "gamesplayed")[0]
+                          .value
                       }
-                      alt={data.team.abbreviation}
-                      className="club-img mx-5"
-                    />
-                    {data.team.name}
-                  </td>
-                  <td>
-                    {
-                      data.stats.filter((e) => e.type === "gamesplayed")[0]
-                        .value
-                    }
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "wins")[0].value}
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "ties")[0].value}
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "losses")[0].value}
-                  </td>
-                  <td>
-                    {
-                      data.stats.filter(
-                        (e) => e.type === "pointdifferential"
-                      )[0].value
-                    }
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "points")[0].value}
-                  </td>
-                </tr>
-              );
-            })}
+                    </td>
+                    <td>
+                      {data.stats.filter((e) => e.type === "wins")[0].value}
+                    </td>
+                    <td>
+                      {data.stats.filter((e) => e.type === "ties")[0].value}
+                    </td>
+                    <td>
+                      {data.stats.filter((e) => e.type === "losses")[0].value}
+                    </td>
+                    <td>
+                      {
+                        data.stats.filter(
+                          (e) => e.type === "pointdifferential"
+                        )[0].value
+                      }
+                    </td>
+                    <td>
+                      {data.stats.filter((e) => e.type === "points")[0].value}
+                    </td>
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
       </>
@@ -137,13 +145,17 @@ export default function Table() {
                 onChange={(e) => setSelectedLeague(e.target.value)}
                 value={selectedLeague}
               >
-                {league.map((data, index) => {
-                  return (
-                    <option value={data.id} key={index}>
-                      {data.name}
-                    </option>
-                  );
-                })}
+                {loading ? (
+                  <Loading />
+                ) : (
+                  league.map((data, index) => {
+                    return (
+                      <option value={data.id} key={index}>
+                        {data.name}
+                      </option>
+                    );
+                  })
+                )}
               </select>
               <select
                 className="form-select mx-auto"
