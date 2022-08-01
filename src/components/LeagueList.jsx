@@ -12,7 +12,7 @@ export default function LeagueList() {
     const fetch = async () => {
       setLoading(true);
       const response = await axios.get(`${API}`);
-      setLeague(response.data.data);
+      response.data.data ? setLeague(response.data.data) : console.log(`try`);
       return setLoading(false);
     };
     fetch();
@@ -23,7 +23,7 @@ export default function LeagueList() {
   return (
     <>
       <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
-        {!loading ? (
+        {league ? (
           league.map((data, index) => {
             return (
               <div className="col" key={index}>
