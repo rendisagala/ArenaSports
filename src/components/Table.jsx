@@ -17,7 +17,7 @@ export default function Table() {
   useEffect(() => {
     const fetch = async () => {
       await axios.get(`${API}`).then((result) => {
-        result.data.data ? setLeague(result.data.data) : setLoading(true);
+        result.data ? setLeague(result.data.data) : setLoading(true);
       });
       setLoading(false);
     };

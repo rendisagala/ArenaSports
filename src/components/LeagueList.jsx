@@ -11,7 +11,7 @@ export default function LeagueList() {
   useEffect(() => {
     const fetch = async () => {
       await axios.get(`${API}`).then((result) => {
-        result.data.data ? setLeague(result.data.data) : setLoading(true);
+        result.data ? setLeague(result.data.data) : setLoading(true);
       });
       setLoading(false);
     };
@@ -30,7 +30,7 @@ export default function LeagueList() {
           </div>
         </div>
         <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
-          {league.length === 0
+          {loading
             ? setLoading(true)
             : league.map((data, index) => {
                 setLoading(false);
