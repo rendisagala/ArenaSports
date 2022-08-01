@@ -1,7 +1,6 @@
 import React from "react";
 import backgroundImage from "../assets/image/hero-bg.jpg";
 import leaguesImage from "../assets/image/leagues.jpeg";
-import teamsImage from "../assets/image/teams.jpeg";
 import newsImage from "../assets/image/news.jpeg";
 
 export default function HomeHero() {
