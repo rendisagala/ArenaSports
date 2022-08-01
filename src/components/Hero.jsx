@@ -49,7 +49,7 @@ export default function Hero() {
               All you need about your favorite league is here!!
             </p>
           </div>
-          <a type="button" class="btn btn-danger" href="/league">
+          <a type="button" className="btn btn-danger" href="/league">
             Read More
           </a>
         </div>
@@ -69,27 +69,7 @@ export default function Hero() {
               favorite league.
             </p>
           </div>
-          <a type="button" class="btn btn-danger" href="/news">
-            Read More
-          </a>
-        </div>
-        <div className="card col-sm">
-          <img
-            src={teamsImage}
-            className="card-img-top"
-            style={{ width: "100%", height: "15vw", objectFit: "cover" }}
-            alt="..."
-          />
-          <div className="card-body">
-            <a href="/league" style={{ textDecoration: "none" }}>
-              <h5 className="card-title  text-dark">Teams</h5>
-            </a>
-            <p className="card-text">
-              All about football teams from every leagues and countries are
-              here. Find Your Best Teams
-            </p>
-          </div>
-          <a type="button" class="btn btn-danger" href="/teams">
+          <a type="button" className="btn btn-danger" href="/news">
             Read More
           </a>
         </div>
