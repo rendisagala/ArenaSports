@@ -10,7 +10,7 @@ export default function LeagueList() {
 
   useEffect(() => {
     const fetch = async () => {
-      setLoading(true);
+      await setLoading(true);
       await axios.get(`${API}`).then((result) => {
         setLeague(result.data.data);
       });
@@ -19,45 +19,37 @@ export default function LeagueList() {
     fetch();
   }, []);
 
-  const Rendered = () => {
+  console.log(league);
+
+  if (loading)
     return (
       <>
-        <div className="row mt-5">
-          <div className="col-12">
-            <h3 className="display-6 fw-bolder text-center">
-              Choose Your Favorite League in ArenaSports!!
-            </h3>
-            <hr />
-          </div>
-        </div>
-        <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
-          {loading ? (
-            <Loading />
-          ) : (
-            league.map((data, index) => {
-              return (
-                <div className="col" key={index}>
-                  <div className="card h-100">
-                    <a href="/league">
-                      <img
-                        src={data.logos.light}
-                        className="card-img-top"
-                        alt="..."
-                      />
-                    </a>
-                    <div className="card-body text-center">
-                      <h5 className="card-title fw-bold lead">{data.name}</h5>
-                    </div>
-                  </div>
-                </div>
-              );
-            })
-          )}
-        </div>
+        <Loading />
       </>
     );
-  };
-  //
-  console.log(league);
-  return <>{league.length !== 0 ? <Rendered /> : <Loading />}</>;
+  return (
+    <>
+      <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
+        {league.map((data, index) => {
+          return (
+            <div className="col" key={index}>
+              <div className="card h-100">
+                <a href="/league">
+                  <img
+                    src={data.logos.light}
+                    className="card-img-top"
+                    alt="..."
+                  />
+                </a>
+                <div className="card-body text-center">
+                  <h5 className="card-title fw-bold lead">{data.name}</h5>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+  // return <>{league.length !== 0 ? <Rendered /> : <Loading />}</>;
 }
