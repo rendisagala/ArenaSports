@@ -66,119 +66,117 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {table.length !== 0
-              ? table.map((data, index) => {
-                  return (
-                    <tr key={index} className="text-center">
-                      <th scope="row">
-                        {data.stats.filter((e) => e.type === "rank")[0].value}
-                      </th>
-                      <td className=" club-name">
-                        <img
-                          src={
-                            data.team.logos
-                              ? data.team.logos[0].href
-                              : nullImage
-                          }
-                          alt={data.team.abbreviation}
-                          className="club-img mx-5"
-                        />
-                        {data.team.name}
-                      </td>
-                      <td>
-                        {
-                          data.stats.filter((e) => e.type === "gamesplayed")[0]
-                            .value
-                        }
-                      </td>
-                      <td>
-                        {data.stats.filter((e) => e.type === "wins")[0].value}
-                      </td>
-                      <td>
-                        {data.stats.filter((e) => e.type === "ties")[0].value}
-                      </td>
-                      <td>
-                        {data.stats.filter((e) => e.type === "losses")[0].value}
-                      </td>
-                      <td>
-                        {
-                          data.stats.filter(
-                            (e) => e.type === "pointdifferential"
-                          )[0].value
-                        }
-                      </td>
-                      <td>
-                        {data.stats.filter((e) => e.type === "points")[0].value}
-                      </td>
-                    </tr>
-                  );
-                })
-              : null}
+            {table.map((data, index) => {
+              return (
+                <tr key={index} className="text-center">
+                  <th scope="row">
+                    {data.stats.filter((e) => e.type === "rank")[0].value}
+                  </th>
+                  <td className=" club-name">
+                    <img
+                      src={
+                        data.team.logos ? data.team.logos[0].href : nullImage
+                      }
+                      alt={data.team.abbreviation}
+                      className="club-img mx-5"
+                    />
+                    {data.team.name}
+                  </td>
+                  <td>
+                    {
+                      data.stats.filter((e) => e.type === "gamesplayed")[0]
+                        .value
+                    }
+                  </td>
+                  <td>
+                    {data.stats.filter((e) => e.type === "wins")[0].value}
+                  </td>
+                  <td>
+                    {data.stats.filter((e) => e.type === "ties")[0].value}
+                  </td>
+                  <td>
+                    {data.stats.filter((e) => e.type === "losses")[0].value}
+                  </td>
+                  <td>
+                    {
+                      data.stats.filter(
+                        (e) => e.type === "pointdifferential"
+                      )[0].value
+                    }
+                  </td>
+                  <td>
+                    {data.stats.filter((e) => e.type === "points")[0].value}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </>
     );
   };
 
-  return (
-    <>
-      <div className="container my-5 py-5">
-        <div className="row">
-          <div className="col-12">
-            <h1 className="display-6 fw-bolder text-center">STANDINGS TABLE</h1>
-            <hr />
+  const Rendered = () => {
+    return (
+      <>
+        <div className="container my-5 py-5">
+          <div className="row">
+            <div className="col-12">
+              <h1 className="display-6 fw-bolder text-center">
+                STANDINGS TABLE
+              </h1>
+              <hr />
+            </div>
           </div>
-        </div>
 
-        <div className="row justify-content-center">
-          <div className="row d-flex">
-            <select
-              className="form-select mx-auto"
-              aria-label="Default select example"
-              onChange={(e) => setSelectedLeague(e.target.value)}
-              value={selectedLeague}
-            >
-              {league.length !== 0
-                ? league.map((data, index) => {
-                    return (
-                      <option value={data.id} key={index}>
-                        {data.name}
-                      </option>
-                    );
-                  })
-                : null}
-            </select>
-            <select
-              className="form-select mx-auto"
-              aria-label="Default select example"
-              onChange={(e) => setSelectedSeason(e.target.value)}
-              value={selectedSeason}
-            >
-              {season.length !== 0
-                ? season.map((data, index) => {
-                    return (
-                      <option value={data.year} key={index}>
-                        {data.year}/{data.year + 1}
-                      </option>
-                    );
-                  })
-                : null}
-            </select>
-            <select
-              className="form-select mx-auto"
-              aria-label="Default select example"
-              onChange={(e) => setSelectedSort(e.target.value)}
-              value={selectedSort}
-            >
-              <option defaultValue value="asc">
-                ascending
-              </option>
-              <option value="desc">descending</option>
-            </select>
+          <div className="row justify-content-center">
+            <div className="row d-flex">
+              <select
+                className="form-select mx-auto"
+                aria-label="Default select example"
+                onChange={(e) => setSelectedLeague(e.target.value)}
+                value={selectedLeague}
+              >
+                {league.map((data, index) => {
+                  return (
+                    <option value={data.id} key={index}>
+                      {data.name}
+                    </option>
+                  );
+                })}
+              </select>
+              <select
+                className="form-select mx-auto"
+                aria-label="Default select example"
+                onChange={(e) => setSelectedSeason(e.target.value)}
+                value={selectedSeason}
+              >
+                {season.map((data, index) => {
+                  return (
+                    <option value={data.year} key={index}>
+                      {data.year}/{data.year + 1}
+                    </option>
+                  );
+                })}
+              </select>
+              <select
+                className="form-select mx-auto"
+                aria-label="Default select example"
+                onChange={(e) => setSelectedSort(e.target.value)}
+                value={selectedSort}
+              >
+                <option defaultValue value="asc">
+                  ascending
+                </option>
+                <option value="desc">descending</option>
+              </select>
+            </div>
+            {loading ? <Loading /> : <ShowTable />}
           </div>
-          {loading ? <Loading /> : <ShowTable />}
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  };
+
+  return <>{loading ? <Loading /> : <Rendered />}</>;
 }
