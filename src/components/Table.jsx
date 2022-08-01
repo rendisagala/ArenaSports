@@ -35,7 +35,7 @@ export default function Table() {
       setLoading(false);
     };
     fetch();
-  }, [selectedLeague]);
+  }, [selectedLeague, league]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -52,7 +52,7 @@ export default function Table() {
       setLoading(false);
     };
     fetch();
-  }, [selectedLeague, selectedSeason, selectedSort]);
+  }, [selectedLeague, selectedSeason, selectedSort, season]);
 
   const ShowTable = () => {
     return (

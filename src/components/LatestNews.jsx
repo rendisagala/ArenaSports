@@ -30,7 +30,7 @@ export default function LatestNews() {
       setLoading(false);
     };
     fetch();
-  }, [selectedLeague]);
+  }, [selectedLeague, league]);
 
   const ShowNews = () => {
     return (
