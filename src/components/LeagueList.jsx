@@ -30,24 +30,27 @@ export default function LeagueList() {
           </div>
         </div>
         <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
-          {league.map((data, index) => {
-            return (
-              <div className="col" key={index}>
-                <div className="card h-100">
-                  <a href="/league">
-                    <img
-                      src={data.logos.light}
-                      className="card-img-top"
-                      alt="..."
-                    />
-                  </a>
-                  <div className="card-body text-center">
-                    <h5 className="card-title fw-bold lead">{data.name}</h5>
+          {league.length === 0
+            ? setLoading(true)
+            : league.map((data, index) => {
+                setLoading(false);
+                return (
+                  <div className="col" key={index}>
+                    <div className="card h-100">
+                      <a href="/league">
+                        <img
+                          src={data.logos.light}
+                          className="card-img-top"
+                          alt="..."
+                        />
+                      </a>
+                      <div className="card-body text-center">
+                        <h5 className="card-title fw-bold lead">{data.name}</h5>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
         </div>
       </>
     );
