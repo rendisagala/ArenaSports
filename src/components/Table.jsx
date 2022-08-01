@@ -16,33 +16,40 @@ export default function Table() {
 
   useEffect(() => {
     const fetch = async () => {
-      const fetchData = await axios.get(`${API}`);
-      setLeague(fetchData.data.data);
+      await axios.get(`${API}`).then((result) => {
+        result.data.data ? setLeague(result.data.data) : setLoading(true);
+      });
+      setLoading(false);
     };
     fetch();
   }, []);
 
   useEffect(() => {
     const fetch = async () => {
-      if (league.length === 0) setLoading(true);
+      if (league.length === 0) await setLoading(true);
       await axios.get(`${API}/${selectedLeague}/seasons`).then((result) => {
-        setSeason(result.data.data.seasons);
+        result.data.data
+          ? setSeason(result.data.data.seasons)
+          : setLoading(true);
       });
+      setLoading(false);
     };
     fetch();
   }, [selectedLeague]);
 
   useEffect(() => {
     const fetch = async () => {
-      if (season.length === 0) setLoading(true);
+      if (season.length === 0) await setLoading(true);
       await axios
         .get(
           `${API}/${selectedLeague}/standings?season=${selectedSeason}&sort=${selectedSort}`
         )
         .then((result) => {
-          setTable(result.data.data.standings);
-          setLoading(false);
+          result.data.data
+            ? setTable(result.data.data.standings)
+            : setLoading(true);
         });
+      setLoading(false);
     };
     fetch();
   }, [selectedLeague, selectedSeason, selectedSort]);
@@ -179,5 +186,5 @@ export default function Table() {
   };
   console.log(table.length);
 
-  return <>{table.length === 0 ? <Loading /> : <Rendered />}</>;
+  return <>{loading ? <Loading /> : <Rendered />}</>;
 }
