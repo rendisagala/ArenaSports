@@ -36,7 +36,7 @@ export default function LatestNews() {
   const ShowNews = () => {
     return (
       <div className="p-5">
-        {news.articles.map((data, index) => {
+        {news.articles?.map((data, index) => {
           return (
             <div className="row gx-5" key={index}>
               <div className="col-md-6 mb-4">
@@ -104,7 +104,7 @@ export default function LatestNews() {
           onChange={(e) => setSelectedLeague(e.target.value)}
           value={selectedLeague}
         >
-          {league.map((data, index) => {
+          {league?.map((data, index) => {
             return (
               <option value={data.id} key={index}>
                 {data.name}

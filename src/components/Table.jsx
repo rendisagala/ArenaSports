@@ -73,54 +73,50 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {loading ? (
-              <Loading />
-            ) : (
-              table.map((data, index) => {
-                return (
-                  <tr key={index} className="text-center">
-                    <th scope="row">
-                      {data.stats.filter((e) => e.type === "rank")[0].value}
-                    </th>
-                    <td className=" club-name">
-                      <img
-                        src={
-                          data.team.logos ? data.team.logos[0].href : nullImage
-                        }
-                        alt={data.team.abbreviation}
-                        className="club-img mx-5"
-                      />
-                      {data.team.name}
-                    </td>
-                    <td>
-                      {
-                        data.stats.filter((e) => e.type === "gamesplayed")[0]
-                          .value
+            {table?.map((data, index) => {
+              return (
+                <tr key={index} className="text-center">
+                  <th scope="row">
+                    {data.stats.filter((e) => e.type === "rank")[0].value}
+                  </th>
+                  <td className=" club-name">
+                    <img
+                      src={
+                        data.team.logos ? data.team.logos[0].href : nullImage
                       }
-                    </td>
-                    <td>
-                      {data.stats.filter((e) => e.type === "wins")[0].value}
-                    </td>
-                    <td>
-                      {data.stats.filter((e) => e.type === "ties")[0].value}
-                    </td>
-                    <td>
-                      {data.stats.filter((e) => e.type === "losses")[0].value}
-                    </td>
-                    <td>
-                      {
-                        data.stats.filter(
-                          (e) => e.type === "pointdifferential"
-                        )[0].value
-                      }
-                    </td>
-                    <td>
-                      {data.stats.filter((e) => e.type === "points")[0].value}
-                    </td>
-                  </tr>
-                );
-              })
-            )}
+                      alt={data.team.abbreviation}
+                      className="club-img mx-5"
+                    />
+                    {data.team.name}
+                  </td>
+                  <td>
+                    {
+                      data.stats.filter((e) => e.type === "gamesplayed")[0]
+                        .value
+                    }
+                  </td>
+                  <td>
+                    {data.stats.filter((e) => e.type === "wins")[0].value}
+                  </td>
+                  <td>
+                    {data.stats.filter((e) => e.type === "ties")[0].value}
+                  </td>
+                  <td>
+                    {data.stats.filter((e) => e.type === "losses")[0].value}
+                  </td>
+                  <td>
+                    {
+                      data.stats.filter(
+                        (e) => e.type === "pointdifferential"
+                      )[0].value
+                    }
+                  </td>
+                  <td>
+                    {data.stats.filter((e) => e.type === "points")[0].value}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </>
@@ -151,7 +147,7 @@ export default function Table() {
   //               {loading ? (
   //                 <Loading />
   //               ) : (
-  //                 league.map((data, index) => {
+  //                 league?.map((data, index) => {
   //                   return (
   //                     <option value={data.id} key={index}>
   //                       {data.name}
@@ -169,7 +165,7 @@ export default function Table() {
   //               {loading ? (
   //                 <Loading />
   //               ) : (
-  //                 season.map((data, index) => {
+  //                 season?.map((data, index) => {
   //                   return (
   //                     <option value={data.year} key={index}>
   //                       {data.year}/{data.year + 1}
@@ -201,7 +197,6 @@ export default function Table() {
   if (loading)
     return (
       <>
-        {" "}
         <Loading />
       </>
     );
@@ -215,17 +210,13 @@ export default function Table() {
             onChange={(e) => setSelectedLeague(e.target.value)}
             value={selectedLeague}
           >
-            {loading ? (
-              <Loading />
-            ) : (
-              league.map((data, index) => {
-                return (
-                  <option value={data.id} key={index}>
-                    {data.name}
-                  </option>
-                );
-              })
-            )}
+            {league?.map((data, index) => {
+              return (
+                <option value={data.id} key={index}>
+                  {data.name}
+                </option>
+              );
+            })}
           </select>
           <select
             className="form-select mx-auto"
@@ -233,17 +224,13 @@ export default function Table() {
             onChange={(e) => setSelectedSeason(e.target.value)}
             value={selectedSeason}
           >
-            {loading ? (
-              <Loading />
-            ) : (
-              season.map((data, index) => {
-                return (
-                  <option value={data.year} key={index}>
-                    {data.year}/{data.year + 1}
-                  </option>
-                );
-              })
-            )}
+            {season?.map((data, index) => {
+              return (
+                <option value={data.year} key={index}>
+                  {data.year}/{data.year + 1}
+                </option>
+              );
+            })}
           </select>
           <select
             className="form-select mx-auto"
