@@ -12,7 +12,7 @@ export default function LeagueList() {
     const fetch = async () => {
       setLoading(true);
       await axios.get(`${API}`).then((result) => {
-        setLeague(result.data.data);
+        if (result.data) setLeague(result.data.data);
       });
       setLoading(false);
     };
