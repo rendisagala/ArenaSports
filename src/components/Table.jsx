@@ -73,133 +73,62 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {table?.map((data, index) => {
-              return (
-                <tr key={index} className="text-center">
-                  <th scope="row">
-                    {data.stats.filter((e) => e.type === "rank")[0].value}
-                  </th>
-                  <td className=" club-name">
-                    <img
-                      src={
-                        data.team.logos ? data.team.logos[0].href : nullImage
+            {table ? (
+              table.map((data, index) => {
+                return (
+                  <tr key={index} className="text-center">
+                    <th scope="row">
+                      {data.stats.filter((e) => e.type === "rank")[0].value}
+                    </th>
+                    <td className=" club-name">
+                      <img
+                        src={
+                          data.team.logos ? data.team.logos[0].href : nullImage
+                        }
+                        alt={data.team.abbreviation}
+                        className="club-img mx-5"
+                      />
+                      {data.team.name}
+                    </td>
+                    <td>
+                      {
+                        data.stats.filter((e) => e.type === "gamesplayed")[0]
+                          .value
                       }
-                      alt={data.team.abbreviation}
-                      className="club-img mx-5"
-                    />
-                    {data.team.name}
-                  </td>
-                  <td>
-                    {
-                      data.stats.filter((e) => e.type === "gamesplayed")[0]
-                        .value
-                    }
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "wins")[0].value}
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "ties")[0].value}
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "losses")[0].value}
-                  </td>
-                  <td>
-                    {
-                      data.stats.filter(
-                        (e) => e.type === "pointdifferential"
-                      )[0].value
-                    }
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "points")[0].value}
-                  </td>
-                </tr>
-              );
-            })}
+                    </td>
+                    <td>
+                      {data.stats.filter((e) => e.type === "wins")[0].value}
+                    </td>
+                    <td>
+                      {data.stats.filter((e) => e.type === "ties")[0].value}
+                    </td>
+                    <td>
+                      {data.stats.filter((e) => e.type === "losses")[0].value}
+                    </td>
+                    <td>
+                      {
+                        data.stats.filter(
+                          (e) => e.type === "pointdifferential"
+                        )[0].value
+                      }
+                    </td>
+                    <td>
+                      {data.stats.filter((e) => e.type === "points")[0].value}
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <Loading />
+            )}
           </tbody>
         </table>
       </>
     );
   };
 
-  // const Rendered = () => {
-  //   return (
-  //     <>
-  //       <div className="container my-5 py-5">
-  //         <div className="row">
-  //           <div className="col-12">
-  //             <h1 className="display-6 fw-bolder text-center">
-  //               STANDINGS TABLE
-  //             </h1>
-  //             <hr />
-  //           </div>
-  //         </div>
-
-  //         <div className="row justify-content-center">
-  //           <div className="row d-flex">
-  //             <select
-  //               className="form-select mx-auto"
-  //               aria-label="Default select example"
-  //               onChange={(e) => setSelectedLeague(e.target.value)}
-  //               value={selectedLeague}
-  //             >
-  //               {loading ? (
-  //                 <Loading />
-  //               ) : (
-  //                 league?.map((data, index) => {
-  //                   return (
-  //                     <option value={data.id} key={index}>
-  //                       {data.name}
-  //                     </option>
-  //                   );
-  //                 })
-  //               )}
-  //             </select>
-  //             <select
-  //               className="form-select mx-auto"
-  //               aria-label="Default select example"
-  //               onChange={(e) => setSelectedSeason(e.target.value)}
-  //               value={selectedSeason}
-  //             >
-  //               {loading ? (
-  //                 <Loading />
-  //               ) : (
-  //                 season?.map((data, index) => {
-  //                   return (
-  //                     <option value={data.year} key={index}>
-  //                       {data.year}/{data.year + 1}
-  //                     </option>
-  //                   );
-  //                 })
-  //               )}
-  //             </select>
-  //             <select
-  //               className="form-select mx-auto"
-  //               aria-label="Default select example"
-  //               onChange={(e) => setSelectedSort(e.target.value)}
-  //               value={selectedSort}
-  //             >
-  //               <option defaultValue value="asc">
-  //                 ascending
-  //               </option>
-  //               <option value="desc">descending</option>
-  //             </select>
-  //           </div>
-  //           {loading ? <Loading /> : <ShowTable />}
-  //         </div>
-  //       </div>
-  //     </>
-  //   );
-  // };
   console.log(table.length);
 
-  if (loading)
-    return (
-      <>
-        <Loading />
-      </>
-    );
   return (
     <>
       <div className="row justify-content-center">
@@ -210,13 +139,17 @@ export default function Table() {
             onChange={(e) => setSelectedLeague(e.target.value)}
             value={selectedLeague}
           >
-            {league?.map((data, index) => {
-              return (
-                <option value={data.id} key={index}>
-                  {data.name}
-                </option>
-              );
-            })}
+            {league ? (
+              league.map((data, index) => {
+                return (
+                  <option value={data.id} key={index}>
+                    {data.name}
+                  </option>
+                );
+              })
+            ) : (
+              <Loading />
+            )}
           </select>
           <select
             className="form-select mx-auto"
@@ -224,13 +157,17 @@ export default function Table() {
             onChange={(e) => setSelectedSeason(e.target.value)}
             value={selectedSeason}
           >
-            {season?.map((data, index) => {
-              return (
-                <option value={data.year} key={index}>
-                  {data.year}/{data.year + 1}
-                </option>
-              );
-            })}
+            {season ? (
+              season.map((data, index) => {
+                return (
+                  <option value={data.year} key={index}>
+                    {data.year}/{data.year + 1}
+                  </option>
+                );
+              })
+            ) : (
+              <Loading />
+            )}
           </select>
           <select
             className="form-select mx-auto"

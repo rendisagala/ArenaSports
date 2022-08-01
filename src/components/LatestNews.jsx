@@ -36,52 +36,56 @@ export default function LatestNews() {
   const ShowNews = () => {
     return (
       <div className="p-5">
-        {news.articles?.map((data, index) => {
-          return (
-            <div className="row gx-5" key={index}>
-              <div className="col-md-6 mb-4">
-                <div
-                  className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
-                  data-mdb-ripple-color="light"
-                >
-                  <img
-                    src={data.images[0].url}
-                    className="img-fluid"
-                    style={{ width: "100%" }}
-                    alt={data.images[0].name}
-                  />
-                  <a href="#!">
-                    <div
-                      className="mask"
-                      style={{
-                        backgroundColor: `rgba(251, 251, 251, 0.15)`,
-                      }}
-                    ></div>
+        {news.articles ? (
+          news.articles.map((data, index) => {
+            return (
+              <div className="row gx-5" key={index}>
+                <div className="col-md-6 mb-4">
+                  <div
+                    className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
+                    data-mdb-ripple-color="light"
+                  >
+                    <img
+                      src={data.images[0].url}
+                      className="img-fluid"
+                      style={{ width: "100%" }}
+                      alt={data.images[0].name}
+                    />
+                    <a href="#!">
+                      <div
+                        className="mask"
+                        style={{
+                          backgroundColor: `rgba(251, 251, 251, 0.15)`,
+                        }}
+                      ></div>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="col-md-6 mb-4">
+                  <span className="badge bg-danger px-2 py-1 shadow-1-strong mb-3">
+                    {data.lastModified.split("T").shift()}
+                  </span>
+                  <h4>
+                    <strong>{data.headline}</strong>
+                  </h4>
+                  <p className="text-dark">{data.description}</p>
+                  <a
+                    href={data.links.web.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button type="button" className="btn btn-primary">
+                      Get Details
+                    </button>
                   </a>
                 </div>
               </div>
-
-              <div className="col-md-6 mb-4">
-                <span className="badge bg-danger px-2 py-1 shadow-1-strong mb-3">
-                  {data.lastModified.split("T").shift()}
-                </span>
-                <h4>
-                  <strong>{data.headline}</strong>
-                </h4>
-                <p className="text-dark">{data.description}</p>
-                <a
-                  href={data.links.web.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <button type="button" className="btn btn-primary">
-                    Get Details
-                  </button>
-                </a>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   };
@@ -89,12 +93,6 @@ export default function LatestNews() {
   //
   console.log(news);
 
-  if (loading)
-    return (
-      <>
-        <Loading />
-      </>
-    );
   return (
     <div className="row justify-content-center">
       <div className="row d-flex">
@@ -104,13 +102,17 @@ export default function LatestNews() {
           onChange={(e) => setSelectedLeague(e.target.value)}
           value={selectedLeague}
         >
-          {league?.map((data, index) => {
-            return (
-              <option value={data.id} key={index}>
-                {data.name}
-              </option>
-            );
-          })}
+          {league ? (
+            league.map((data, index) => {
+              return (
+                <option value={data.id} key={index}>
+                  {data.name}
+                </option>
+              );
+            })
+          ) : (
+            <Loading />
+          )}
         </select>
       </div>
       {loading ? <Loading /> : <ShowNews />}
