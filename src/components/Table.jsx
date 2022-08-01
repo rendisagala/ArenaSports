@@ -17,7 +17,7 @@ export default function Table() {
   useEffect(() => {
     const fetch = async () => {
       await axios.get(`${API}`).then((result) => {
-        if (result.data.length !== 0) setLeague(result.data.data);
+        setLeague(result.data.data);
       });
     };
     fetch();
@@ -26,7 +26,7 @@ export default function Table() {
   useEffect(() => {
     const fetch = async () => {
       await axios.get(`${API}/${selectedLeague}/seasons`).then((result) => {
-        if (result.data.length !== 0) setSeason(result.data.data.seasons);
+        setSeason(result.data.data.seasons);
       });
     };
     fetch();
@@ -66,50 +66,54 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {table.map((data, index) => {
-              return (
-                <tr key={index} className="text-center">
-                  <th scope="row">
-                    {data.stats.filter((e) => e.type === "rank")[0].value}
-                  </th>
-                  <td className=" club-name">
-                    <img
-                      src={
-                        data.team.logos ? data.team.logos[0].href : nullImage
-                      }
-                      alt={data.team.abbreviation}
-                      className="club-img mx-5"
-                    />
-                    {data.team.name}
-                  </td>
-                  <td>
-                    {
-                      data.stats.filter((e) => e.type === "gamesplayed")[0]
-                        .value
-                    }
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "wins")[0].value}
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "ties")[0].value}
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "losses")[0].value}
-                  </td>
-                  <td>
-                    {
-                      data.stats.filter(
-                        (e) => e.type === "pointdifferential"
-                      )[0].value
-                    }
-                  </td>
-                  <td>
-                    {data.stats.filter((e) => e.type === "points")[0].value}
-                  </td>
-                </tr>
-              );
-            })}
+            {table.length !== 0
+              ? table.map((data, index) => {
+                  return (
+                    <tr key={index} className="text-center">
+                      <th scope="row">
+                        {data.stats.filter((e) => e.type === "rank")[0].value}
+                      </th>
+                      <td className=" club-name">
+                        <img
+                          src={
+                            data.team.logos
+                              ? data.team.logos[0].href
+                              : nullImage
+                          }
+                          alt={data.team.abbreviation}
+                          className="club-img mx-5"
+                        />
+                        {data.team.name}
+                      </td>
+                      <td>
+                        {
+                          data.stats.filter((e) => e.type === "gamesplayed")[0]
+                            .value
+                        }
+                      </td>
+                      <td>
+                        {data.stats.filter((e) => e.type === "wins")[0].value}
+                      </td>
+                      <td>
+                        {data.stats.filter((e) => e.type === "ties")[0].value}
+                      </td>
+                      <td>
+                        {data.stats.filter((e) => e.type === "losses")[0].value}
+                      </td>
+                      <td>
+                        {
+                          data.stats.filter(
+                            (e) => e.type === "pointdifferential"
+                          )[0].value
+                        }
+                      </td>
+                      <td>
+                        {data.stats.filter((e) => e.type === "points")[0].value}
+                      </td>
+                    </tr>
+                  );
+                })
+              : null}
           </tbody>
         </table>
       </>
@@ -134,13 +138,15 @@ export default function Table() {
               onChange={(e) => setSelectedLeague(e.target.value)}
               value={selectedLeague}
             >
-              {league.map((data, index) => {
-                return (
-                  <option value={data.id} key={index}>
-                    {data.name}
-                  </option>
-                );
-              })}
+              {league.length !== 0
+                ? league.map((data, index) => {
+                    return (
+                      <option value={data.id} key={index}>
+                        {data.name}
+                      </option>
+                    );
+                  })
+                : null}
             </select>
             <select
               className="form-select mx-auto"
@@ -148,13 +154,15 @@ export default function Table() {
               onChange={(e) => setSelectedSeason(e.target.value)}
               value={selectedSeason}
             >
-              {season.map((data, index) => {
-                return (
-                  <option value={data.year} key={index}>
-                    {data.year}/{data.year + 1}
-                  </option>
-                );
-              })}
+              {season.length !== 0
+                ? season.map((data, index) => {
+                    return (
+                      <option value={data.year} key={index}>
+                        {data.year}/{data.year + 1}
+                      </option>
+                    );
+                  })
+                : null}
             </select>
             <select
               className="form-select mx-auto"

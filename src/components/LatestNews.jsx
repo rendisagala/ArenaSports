@@ -14,7 +14,7 @@ export default function LatestNews() {
   useEffect(() => {
     const fetch = async () => {
       await axios.get(`${API1}`).then((result) => {
-        if (result.data.length !== 0) setLeague(result.data.data);
+        setLeague(result.data.data);
       });
     };
     fetch();
@@ -102,13 +102,15 @@ export default function LatestNews() {
             onChange={(e) => setSelectedLeague(e.target.value)}
             value={selectedLeague}
           >
-            {league.map((data, index) => {
-              return (
-                <option value={data.id} key={index}>
-                  {data.name}
-                </option>
-              );
-            })}
+            {league.length !== 0
+              ? league.map((data, index) => {
+                  return (
+                    <option value={data.id} key={index}>
+                      {data.name}
+                    </option>
+                  );
+                })
+              : null}
           </select>
         </div>
 
