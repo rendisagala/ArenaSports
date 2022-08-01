@@ -16,8 +16,8 @@ export default function LatestNews() {
       setLoading(true);
       await axios.get(`${API1}`).then((result) => {
         setLeague(result.data.data);
+        setLoading(false);
       });
-      setLoading(false);
     };
     fetch();
   }, []);
@@ -27,8 +27,8 @@ export default function LatestNews() {
       setLoading(true);
       await axios.get(`${API2}/${selectedLeague}/news`).then((result) => {
         setNews(result.data);
+        setLoading(false);
       });
-      setLoading(false);
     };
     fetch();
   }, [selectedLeague]);
