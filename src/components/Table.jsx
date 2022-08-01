@@ -17,7 +17,7 @@ export default function Table() {
   useEffect(() => {
     const fetch = async () => {
       await axios.get(`${API}`).then((result) => {
-        setLeague(result.data.data);
+        if (result.data.length !== 0) setLeague(result.data.data);
       });
     };
     fetch();
@@ -26,7 +26,7 @@ export default function Table() {
   useEffect(() => {
     const fetch = async () => {
       await axios.get(`${API}/${selectedLeague}/seasons`).then((result) => {
-        setSeason(result.data.data.seasons);
+        if (result.data.length !== 0) setSeason(result.data.data.seasons);
       });
     };
     fetch();

@@ -14,7 +14,7 @@ export default function LatestNews() {
   useEffect(() => {
     const fetch = async () => {
       await axios.get(`${API1}`).then((result) => {
-        setLeague(result.data.data);
+        if (result.data.length !== 0) setLeague(result.data.data);
       });
     };
     fetch();
