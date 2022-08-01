@@ -5,7 +5,7 @@ import nullImage from "../assets/image/null-image.png";
 
 const API = process.env.REACT_APP_STANDINGS_API;
 
-export default function Explore() {
+export default function Table() {
   const [league, setLeague] = useState([]);
   const [table, setTable] = useState([]);
   const [season, setSeason] = useState([]);

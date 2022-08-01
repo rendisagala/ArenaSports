@@ -4,7 +4,7 @@ import leaguesImage from "../assets/image/leagues.jpeg";
 import teamsImage from "../assets/image/teams.jpeg";
 import newsImage from "../assets/image/news.jpeg";
 
-export default function Hero() {
+export default function HomeHero() {
   return (
     <>
       <div className="card text-light ">
