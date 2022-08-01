@@ -23,7 +23,7 @@ export default function LeagueList() {
   return (
     <>
       <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
-        {league ? (
+        {loading ? (
           league.map((data, index) => {
             return (
               <div className="col" key={index}>
