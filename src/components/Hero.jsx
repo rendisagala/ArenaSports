@@ -49,7 +49,7 @@ export default function Hero() {
               All you need about your favorite league is here!!
             </p>
           </div>
-          <a type="button" class="btn btn-danger">
+          <a type="button" class="btn btn-danger" href="/league">
             Read More
           </a>
         </div>
@@ -69,7 +69,7 @@ export default function Hero() {
               favorite league.
             </p>
           </div>
-          <a type="button" class="btn btn-danger">
+          <a type="button" class="btn btn-danger" href="/news">
             Read More
           </a>
         </div>
@@ -89,7 +89,7 @@ export default function Hero() {
               here. Find Your Best Teams
             </p>
           </div>
-          <a type="button" class="btn btn-danger">
+          <a type="button" class="btn btn-danger" href="/teams">
             Read More
           </a>
         </div>
