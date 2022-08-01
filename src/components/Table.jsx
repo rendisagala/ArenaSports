@@ -198,5 +198,5 @@ export default function Table() {
   };
   console.log(table.length);
 
-  return <>{loading ? <Loading /> : <Rendered />}</>;
+  return <>{table.length !== 0 ? <Rendered /> : <Loading />}</>;
 }

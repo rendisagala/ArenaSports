@@ -128,5 +128,5 @@ export default function LatestNews() {
   //
   console.log(news);
 
-  return <>{loading ? <Loading /> : <Rendered />}</>;
+  return <>{news.length !== 0 ? <Rendered /> : <Loading />}</>;
 }
