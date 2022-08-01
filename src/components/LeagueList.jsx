@@ -51,5 +51,5 @@ export default function LeagueList() {
     );
   };
 
-  return <>{league === [] ? <Loading /> : <Rendered />}</>;
+  return <>{league.length === 0 ? <Loading /> : <Rendered />}</>;
 }

@@ -24,7 +24,7 @@ export default function Table() {
 
   useEffect(() => {
     const fetch = async () => {
-      if (league === []) return null;
+      if (league.length === 0) setLoading(true);
       await axios.get(`${API}/${selectedLeague}/seasons`).then((result) => {
         setSeason(result.data.data.seasons);
       });
@@ -34,8 +34,7 @@ export default function Table() {
 
   useEffect(() => {
     const fetch = async () => {
-      setLoading(true);
-      if (season === []) return null;
+      if (season.length === 0) setLoading(true);
       await axios
         .get(
           `${API}/${selectedLeague}/standings?season=${selectedSeason}&sort=${selectedSort}`
@@ -178,6 +177,7 @@ export default function Table() {
       </>
     );
   };
+  console.log(table.length);
 
-  return <>{table === [] ? <Loading /> : <Rendered />}</>;
+  return <>{table.length === 0 ? <Loading /> : <Rendered />}</>;
 }

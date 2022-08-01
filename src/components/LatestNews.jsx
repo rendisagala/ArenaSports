@@ -22,8 +22,7 @@ export default function LatestNews() {
 
   useEffect(() => {
     const fetch = async () => {
-      setLoading(true);
-      if (league === []) return null;
+      if (league.length === 0) setLoading(true);
       await axios.get(`${API2}/${selectedLeague}/news`).then((result) => {
         setNews(result.data);
         setLoading(false);
@@ -125,5 +124,5 @@ export default function LatestNews() {
       </div>
     );
   };
-  return <>{news === [] ? <Loading /> : <Rendered />}</>;
+  return <>{news.length === 0 ? <Loading /> : <Rendered />}</>;
 }
