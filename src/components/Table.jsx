@@ -26,11 +26,9 @@ export default function Table() {
 
   useEffect(() => {
     const fetch = async () => {
-      if (league.length === 0) await setLoading(true);
+      setLoading(true);
       await axios.get(`${API}/${selectedLeague}/seasons`).then((result) => {
-        result.data.data
-          ? setSeason(result.data.data.seasons)
-          : setLoading(true);
+        setSeason(result.data.data.seasons);
       });
       setLoading(false);
     };
@@ -39,15 +37,13 @@ export default function Table() {
 
   useEffect(() => {
     const fetch = async () => {
-      if (season.length === 0) await setLoading(true);
+      setLoading(true);
       await axios
         .get(
           `${API}/${selectedLeague}/standings?season=${selectedSeason}&sort=${selectedSort}`
         )
         .then((result) => {
-          result.data.data
-            ? setTable(result.data.data.standings)
-            : setLoading(true);
+          setTable(result.data.data.standings);
         });
       setLoading(false);
     };
