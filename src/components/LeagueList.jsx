@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 
@@ -8,13 +8,20 @@ export default function LeagueList() {
   const [league, setLeague] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  let componentMounted = true;
+
+  const getLeague = async () => {
+    const response = await axios.get(`${API}`);
+    setLeague(response.data.data);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const fetch = async () => {
-      setLoading(true);
-      await axios.get(`${API}`).then((result) => setLeague(result.data.data));
-      return setLoading(false);
+    setLoading(true);
+    if (componentMounted) getLeague();
+    return () => {
+      componentMounted = false;
     };
-    fetch();
   }, []);
 
   console.log(league);
