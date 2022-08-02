@@ -5,7 +5,7 @@ export default function NavigationBar() {
     <>
       <nav className="navbar navbar-expand-lg bg-white py-3 ">
         <div className="container">
-          <a className="navbar-brand fw-bold fs-4" href="#">
+          <a className="navbar-brand fw-bold fs-4" href="/">
             ARENASPORTS
           </a>
           <button
