@@ -9,6 +9,8 @@ export default function LeagueList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     setLoading(true);
     const fetch = async () => {
       const response = await axios.get(`${API}`);
@@ -16,6 +18,7 @@ export default function LeagueList() {
       setLoading(false);
     };
     fetch();
+    return () => controller.abort();
   }, []);
   {
     console.log(league);
