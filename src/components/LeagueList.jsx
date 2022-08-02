@@ -8,21 +8,21 @@ export default function LeagueList() {
   const [league, setLeague] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  let componentMounted = true;
-
-  const getLeague = async () => {
-    const response = await axios.get(`${API}`);
-    setLeague(response.data.data);
-    setLoading(false);
-  };
-
   useEffect(() => {
-    setLoading(true);
-    if (componentMounted) getLeague();
-    return () => {
-      componentMounted = false;
+    const controller = new AbortController();
+    const fetch = async () => {
+      try {
+        const response = await axios.get(`${API}`);
+        setLeague(response.data.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     };
-  }, []);
+    fetch();
+    return () => controller.abort();
+  }, [league]);
 
   console.log(league);
 
