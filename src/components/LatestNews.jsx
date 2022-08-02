@@ -13,9 +13,8 @@ export default function LatestNews() {
 
   useEffect(() => {
     const fetch = async () => {
-      setLoading(true);
       await axios.get(`${API1}`).then((result) => {
-        setLeague(result.data.data);
+        result.data ? setLeague(result.data.data) : setLoading(true);
       });
       setLoading(false);
     };
@@ -118,5 +117,4 @@ export default function LatestNews() {
       {loading ? <Loading /> : <ShowNews />}
     </div>
   );
-  // return <>{news.length !== 0 ? <Rendered /> : <Loading />}</>;
 }

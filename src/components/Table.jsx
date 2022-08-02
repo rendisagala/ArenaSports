@@ -123,8 +123,6 @@ export default function Table() {
     );
   };
 
-  console.log(table.length);
-
   return (
     <>
       <div className="row justify-content-center">
@@ -181,6 +179,4 @@ export default function Table() {
       </div>
     </>
   );
-
-  // return <>{table.length !== 0 ? <Rendered /> : <Loading />}</>;
 }

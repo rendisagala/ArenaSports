@@ -9,12 +9,14 @@ export default function LeagueList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    return async () => {
-      const response = await axios.get(`${API}`);
-      setLeague(response.data.data);
+    const fetch = async () => {
+      await axios.get(`${API}`).then((result) => {
+        result.data ? setLeague(result.data.data) : setLoading(true);
+      });
       setLoading(false);
     };
-  }, [league]);
+    fetch();
+  }, []);
   console.log(league);
   return (
     <>
