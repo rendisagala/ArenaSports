@@ -21,7 +21,7 @@ export default function LeagueList() {
     console.log(league);
   }
 
-  if (league.length !== 0 || league.length !== undefined) {
+  if (league.length) {
     return (
       <>
         <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
