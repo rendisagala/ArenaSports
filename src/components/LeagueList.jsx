@@ -9,50 +9,49 @@ export default function LeagueList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const controller = new AbortController();
+    setLoading(true);
     const fetch = async () => {
-      try {
-        const response = await axios.get(`${API}`);
-        setLeague(response.data.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
+      const response = await axios.get(`${API}`);
+      setLeague(response.data.data);
+      setLoading(false);
     };
     fetch();
-    return () => controller.abort();
-  }, [league]);
+  }, []);
+  {
+    console.log(league);
+  }
 
-  console.log(league);
-
-  return (
-    <>
-      <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
-        {league ? (
-          league.map((data, index) => {
-            return (
-              <div className="col" key={index}>
-                <div className="card h-100">
-                  <a href="/league">
-                    <img
-                      src={data.logos.light}
-                      className="card-img-top"
-                      alt="..."
-                    />
-                  </a>
-                  <div className="card-body text-center">
-                    <h5 className="card-title fw-bold lead">{data.name}</h5>
+  if (league.length > 0) {
+    return (
+      <>
+        <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
+          {league ? (
+            league.map((data, index) => {
+              return (
+                <div className="col" key={index}>
+                  <div className="card h-100">
+                    <a href="/league">
+                      <img
+                        src={data.logos.light}
+                        className="card-img-top"
+                        alt="..."
+                      />
+                    </a>
+                    <div className="card-body text-center">
+                      <h5 className="card-title fw-bold lead">{data.name}</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <Loading />
-        )}
-      </div>
-    </>
-  );
+              );
+            })
+          ) : (
+            <Loading />
+          )}
+        </div>
+      </>
+    );
+  } else {
+    <Loading />;
+  }
   // return <>{league.length !== 0 ? <Rendered /> : <Loading />}</>;
 }
