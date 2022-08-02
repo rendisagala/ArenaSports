@@ -89,9 +89,6 @@ export default function LatestNews() {
     );
   };
 
-  //
-  console.log(news);
-
   return (
     <div className="row justify-content-center">
       <div className="row d-flex">
