@@ -10,21 +10,22 @@ export default function LeagueList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // setLoading(true);
     const fetch = async () => {
       const response = await axios.get(`${API}`);
       setLeague(response.data.data);
     };
     fetch();
     return () => {
-      console.log(league);
+      // console.log(league);
       setLoading(false);
     };
   }, []);
-
+  console.log(league);
   return (
     <>
       <div className="row row-cols-1 row-cols-md-3 g-4 py-5">
-        {league ? (
+        {!loading ? (
           league.map((data, index) => {
             return (
               <div className="col" key={index}>
