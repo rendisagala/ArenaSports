@@ -6,16 +6,20 @@ const API = process.env.REACT_APP_STANDINGS_API;
 
 export default function LeagueList() {
   const [league, setLeague] = useState([]);
+  const [data, setData] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    return async () => {
+    const fetch = async () => {
       const response = await axios.get(`${API}`);
       setLeague(response.data.data);
-      console.log(league);
-      league ? setLoading(false) : setLoading(true);
     };
-  }, [league]);
+    fetch();
+    return () => {
+      console.log(league);
+      setLoading(false);
+    };
+  }, []);
 
   return (
     <>
@@ -45,6 +49,4 @@ export default function LeagueList() {
       </div>
     </>
   );
-
-  // return <>{league.length !== 0 ? <Rendered /> : <Loading />}</>;
 }
