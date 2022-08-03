@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "./Loading";
-import nullImage from "../assets/image/null-image.png";
+import nullImage from "../assets/image/null-club.png";
 
 const API = process.env.REACT_APP_STANDINGS_API;
 

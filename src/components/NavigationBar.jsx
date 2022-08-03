@@ -42,7 +42,7 @@ export default function NavigationBar() {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="/league"
+                  href="/players"
                 >
                   Players
                 </a>
