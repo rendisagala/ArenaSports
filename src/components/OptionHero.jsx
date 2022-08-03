@@ -1,6 +1,7 @@
 import React from "react";
 import leaguesImage from "../assets/image/leagues.jpeg";
 import newsImage from "../assets/image/news.jpeg";
+import playersImage from "../assets/image/players.jpeg";
 
 export default function OptionHero() {
   return (
@@ -53,6 +54,26 @@ export default function OptionHero() {
             </p>
           </div>
           <a type="button" className="btn btn-danger" href="/news">
+            Read More
+          </a>
+        </div>
+        <div className="card col-sm">
+          <img
+            src={playersImage}
+            className="card-img-top"
+            style={{ width: "100%", height: "15vw", objectFit: "cover" }}
+            alt="..."
+          />
+          <div className="card-body">
+            <a href="/news" style={{ textDecoration: "none" }}>
+              <h5 className="card-title  text-dark">Players</h5>
+            </a>
+            <p className="card-text">
+              All football players information that you need is here. Find your
+              favorite football player in ArenaSports.
+            </p>
+          </div>
+          <a type="button" className="btn btn-danger" href="/players">
             Read More
           </a>
         </div>
