@@ -5,7 +5,7 @@ import nullImage from "../assets/image/null-player.png";
 
 export default function SearchPlayer() {
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("Phil");
   const [result, setResult] = useState([]);
 
   const API = process.env.REACT_APP_PLAYERS_API;
@@ -23,8 +23,6 @@ export default function SearchPlayer() {
     };
     if (regExp.test(search)) fetch();
   }, [search]);
-
-  console.log(loading);
 
   return (
     <>
@@ -48,7 +46,7 @@ export default function SearchPlayer() {
         {!loading ? (
           result?.map((data, index) => {
             return (
-              <div className="card col-3 p-2 m-2" key={index}>
+              <div className="card col-3 p-2" key={index}>
                 <img
                   className="card-img-top "
                   src={data.strThumb ? data.strThumb : nullImage}
