@@ -38,6 +38,15 @@ export default function NavigationBar() {
                   Leagues
                 </a>
               </li>
+              <li className="nav-item ">
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href="/league"
+                >
+                  Players
+                </a>
+              </li>
 
               <li className="nav-item ">
                 <a
