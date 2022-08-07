@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "./Loading";
+import nullImage from "../assets/image/null-club.png";
 
 const API1 = process.env.REACT_APP_STANDINGS_API;
 const API2 = process.env.REACT_APP_NEWS_API;
@@ -45,10 +46,14 @@ export default function LatestNews() {
                     data-mdb-ripple-color="light"
                   >
                     <img
-                      src={data.images[0].url}
+                      src={
+                        data.images.length > 0 ? data.images[0].url : nullImage
+                      }
                       className="img-fluid"
                       style={{ width: "100%" }}
-                      alt={data.images[0].name}
+                      alt={
+                        data.images.length > 0 ? data.images[0].name : "null"
+                      }
                     />
                     <a href="#!">
                       <div
