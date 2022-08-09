@@ -4,12 +4,15 @@ import League from "./pages/League";
 import News from "./pages/News";
 import About from "./pages/About";
 import Players from "./pages/Players";
+import NavigationBar from "./components/NavigationBar";
+import Copyright from "./components/Copyright";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <div className="container">
+          <NavigationBar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -17,7 +20,8 @@ function App() {
             <Route path="/news" element={<News />} />
             <Route path="/players" element={<Players />} />
             <Route path="/about" element={<About />} />
-          </Routes>
+          </Routes>{" "}
+          <Copyright />
         </div>
       </BrowserRouter>
     </>

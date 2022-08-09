@@ -1,13 +1,10 @@
 import React from "react";
-import NavigationBar from "../components/NavigationBar";
 import HomeHero from "../components/HomeHero";
 import LeagueList from "../components/LeagueList";
-import Copyright from "../components/Copyright";
 
 export default function Home() {
   return (
     <>
-      <NavigationBar />
       <HomeHero />
       <div className="row mt-5">
         <div className="col-12">
@@ -18,7 +15,6 @@ export default function Home() {
         </div>
       </div>
       <LeagueList />
-      <Copyright />
     </>
   );
 }
