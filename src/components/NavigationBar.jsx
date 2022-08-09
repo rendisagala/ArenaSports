@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function NavigationBar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-white py-3 ">
         <div className="container">
-          <a className="navbar-brand fw-bold fs-4" href="/">
-            ARENASPORTS
-          </a>
+          <Link to="/">
+            <div className="navbar-brand fw-bold fs-4 link">ARENASPORTS</div>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -19,44 +20,41 @@ export default function NavigationBar() {
           ></button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/home">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item ">
-                <a className="nav-link active" aria-current="page" href="/news">
-                  News
-                </a>
-              </li>
-              <li className="nav-item ">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href="/league"
-                >
-                  Leagues
-                </a>
-              </li>
-              <li className="nav-item ">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href="/players"
-                >
-                  Players
-                </a>
-              </li>
-
-              <li className="nav-item ">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href="/about"
-                >
-                  About
-                </a>
-              </li>
+              <Link to="/home">
+                <li className="nav-item">
+                  <div className="nav-link active" aria-current="page">
+                    Home
+                  </div>
+                </li>
+              </Link>
+              <Link to="/news">
+                <li className="nav-item ">
+                  <div className="nav-link active" aria-current="page">
+                    News
+                  </div>
+                </li>
+              </Link>
+              <Link to="/league">
+                <li className="nav-item ">
+                  <div className="nav-link active" aria-current="page">
+                    Leagues
+                  </div>
+                </li>
+              </Link>
+              <Link to="/players">
+                <li className="nav-item ">
+                  <div className="nav-link active" aria-current="page">
+                    Players
+                  </div>
+                </li>
+              </Link>
+              <Link to="/about">
+                <li className="nav-item ">
+                  <div className="nav-link active" aria-current="page">
+                    About
+                  </div>
+                </li>
+              </Link>
             </ul>
           </div>
           <p>Spot Your Best Teams!</p>

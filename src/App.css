@@ -14,6 +14,10 @@ body {
 /* -----NavigationBar----- */
 .navbar nav a {
   font-style: 18px;
+  text-decoration: none;
+}
+.navbar a {
+  text-decoration: none;
 }
 
 /* -----Explore----- */
